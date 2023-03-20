@@ -6,6 +6,10 @@ pipeline {
                  script {
                   // The below will clone your repo and will be checked out to master branch by default.
                   git credentialsId: 'github', url: 'https://github.com/dapiroy/argocd-proj.git'
+                  // List all branches in your repo. 
+                  sh "git branch -a"
+                  // Checkout to a specific branch in your repo.
+                  sh "git checkout main"
       
                  }
              }
