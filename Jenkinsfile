@@ -2,17 +2,20 @@ pipeline {
     agent any
     stages {
          stage('Checkout') {
-             script {
+             steps{
+                 script {
                   // The below will clone your repo and will be checked out to master branch by default.
                   git credentialsId: 'github', url: 'https://github.com/dapiroy/argocd-proj.git'
       
+                 }
              }
          }
 
          stage('Update GIT') {
-            script {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+             steps{
+                 script {
+                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                      withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                         //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
                         sh "git config user.email dapiroy007.com"
                         sh "git config user.name dapiroy"
@@ -23,9 +26,10 @@ pipeline {
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
                         sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/argocd-proj.git HEAD:main"
-                    }
-                }
-            }
+                      }
+                     }
+                 }
+             }
          }
     }
 }
