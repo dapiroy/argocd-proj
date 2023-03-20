@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: regapp
-        image: dapiroy/regapp
+        image: dapiroy/regapp:22
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
