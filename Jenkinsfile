@@ -3,8 +3,7 @@ pipeline {
     stages {
          stage('Checkout'){
              steps {
-                 checkout scm
-                 Git(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/dapiroy/argocd-proj.git']])
+                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/dapiroy/argocd-proj.git']])
              }
          }
 
