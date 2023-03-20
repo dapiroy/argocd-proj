@@ -1,10 +1,9 @@
 pipeline {
     agent any
     stages {
-         stage('GetCode'){
-            steps{
-                git 'https://github.com/dapiroy/argocd-proj.git'
-            }
+         stage('Checkout'){
+            checkout scm
+            Git(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/dapiroy/argocd-proj.git']])
          }
 
          stage('Update GIT') {
