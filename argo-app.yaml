@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/dapiroy/argocd-proj.git
     targetRevision: HEAD
-    path: Jenkinsfile
+    path: ./
   destination:
     server: https://kubernetes.default.svc
     namespace: myapp
